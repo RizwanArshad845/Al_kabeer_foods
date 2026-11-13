@@ -103,7 +103,7 @@ function Miss({ result, photoUrl, onAgain, onHome }) {
       <div className="result-inner">
         <div className="miss-photo">
           <img src={photoUrl} alt="Your photo" />
-          <img src="/products/mozzarella-sticks.png" alt="The pack to look for" className="miss-target" />
+          <img src={`${import.meta.env.BASE_URL}products/mozzarella-sticks.png`} alt="The pack to look for" className="miss-target" />
         </div>
         <h1 ref={headingRef} tabIndex={-1} className="result-title">
           {isOtherAlKabeer ? 'Good taste, wrong pack' : 'We couldn’t find the pack'}

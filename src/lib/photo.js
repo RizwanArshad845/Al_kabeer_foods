@@ -34,7 +34,7 @@ export async function photoFromFile(file) {
 export async function checkPhoto(photo) {
   let res;
   try {
-    res = await fetch('/api/scan', {
+    res = await fetch(`${import.meta.env.BASE_URL}api/scan`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ image: photo.base64, mimeType: photo.mimeType }),

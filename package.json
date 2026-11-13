@@ -9,7 +9,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "install:functions": "cd functions && npm install",
+    "deploy:api": "npx firebase-tools deploy --only functions:alkabeer --project tech-poc-a5f7a --non-interactive"
   },
   "dependencies": {
     "@google/genai": "^3.3.0",

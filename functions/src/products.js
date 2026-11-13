@@ -5,7 +5,7 @@ export const CAMPAIGN_PRODUCTS = [
     id: 'mozzarella-cheese-sticks-250g',
     name: 'Mozzarella Cheese Sticks 250g',
     nameAr: 'اصابع جبنة الموزاريلا',
-    image: '/products/mozzarella-sticks.png',
+    image: 'products/mozzarella-sticks.png', // relative to the app's base path (/alkabeer/)
     packaging: [
       'Rectangular frozen-food carton, mostly white with a bright yellow top banner patterned with faint white rolling-pin outlines.',
       'Al Kabeer logo: red chef-hat shape with "الكبير" and "Al Kabeer" in red, above a large black handlebar mustache.',

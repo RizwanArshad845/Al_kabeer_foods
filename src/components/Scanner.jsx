@@ -131,7 +131,7 @@ export default function Scanner({ onBack, onResult }) {
 
         {!photo && camera === 'unavailable' && (
           <div className="viewfinder-empty">
-            <img src="/products/mozzarella-sticks.png" alt="" className="ghost-pack" />
+            <img src={`${import.meta.env.BASE_URL}products/mozzarella-sticks.png`} alt="" className="ghost-pack" />
             <p>
               The camera isn’t available here. Take or choose a photo of the pack instead.
             </p>

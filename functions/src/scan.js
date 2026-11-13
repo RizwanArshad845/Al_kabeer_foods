@@ -3,7 +3,7 @@ import { GoogleGenAI } from '@google/genai';
 import { CAMPAIGN_PRODUCTS, PRIZES } from './products.js';
 
 const ALLOWED_MIME = new Set(['image/jpeg', 'image/png', 'image/webp']);
-// Vercel caps request bodies at 4.5 MB; the client resizes photos well under this.
+// The client resizes photos to ~1280px JPEG, far below this cap.
 const MAX_BASE64_CHARS = 4_000_000;
 
 export class ScanError extends Error {
@@ -87,14 +87,10 @@ export function validateScanBody(rawBody) {
   return { image, mimeType };
 }
 
-export async function scanImage({ image, mimeType }) {
-  const apiKey = (
-    process.env.GEMINI_API_KEY ||
-    process.env.VITE_GEMINI_API_KEY ||
-    process.env.GOOGLE_API_KEY ||
-    ''
-  ).trim();
-  if (!apiKey) throw new ScanError(500, 'GEMINI_API_KEY is not set on the server.');
+// apiKey comes from Secret Manager in the Cloud Function, or from .env during `npm run dev`.
+export async function scanImage({ image, mimeType }, apiKey) {
+  apiKey = (apiKey ?? '').trim();
+  if (!apiKey) throw new ScanError(500, 'The Gemini API key is not configured on the server.');
 
   const ai = new GoogleGenAI({ apiKey });
   let response;

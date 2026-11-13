@@ -47,7 +47,7 @@ export default function Landing({ onStart }) {
           <div className="pack-plate" aria-hidden="true" />
           <img
             className="pack-img"
-            src="/products/mozzarella-sticks.png"
+            src={`${import.meta.env.BASE_URL}products/mozzarella-sticks.png`}
             alt="Al Kabeer Mozzarella Cheese Sticks, 250 g pack"
             width="865"
             height="1020"
