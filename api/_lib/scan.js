@@ -88,7 +88,12 @@ export function validateScanBody(rawBody) {
 }
 
 export async function scanImage({ image, mimeType }) {
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = (
+    process.env.GEMINI_API_KEY ||
+    process.env.VITE_GEMINI_API_KEY ||
+    process.env.GOOGLE_API_KEY ||
+    ''
+  ).trim();
   if (!apiKey) throw new ScanError(500, 'GEMINI_API_KEY is not set on the server.');
 
   const ai = new GoogleGenAI({ apiKey });

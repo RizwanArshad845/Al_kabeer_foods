@@ -22,7 +22,8 @@ function localApi() {
           if (size > 4.5 * 1024 * 1024) return send(413, { error: 'That photo is too large. Try a smaller one.' });
           chunks.push(chunk);
         }
-        // Import per request so edits to api/_lib are picked up without restarting.
+        // Reload .env on every request and import per request so edits take effect without restarting.
+        Object.assign(process.env, loadEnv(server.config.mode, process.cwd(), ''));
         const { scanImage, validateScanBody, ScanError } = await server.ssrLoadModule('/api/_lib/scan.js');
         try {
           const body = JSON.parse(Buffer.concat(chunks).toString('utf8') || 'null');
